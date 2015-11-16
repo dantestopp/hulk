@@ -1,0 +1,16 @@
+{
+    "name": "happyoniens/hulk",
+    "description": "PHP MVC Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dante Stoppini",
+            "email": "dante.stoppini@gmail.com"
+        },
+        {
+           "name": "Gabriel Lovric",
+           "email": "lovric.gabriel@gmail.com"
+        }
+    ],
+    "require": {}
+}
