@@ -1,4 +1,5 @@
 <?php
+namespace Hulk;
 
 /**
  * @author happyonies
