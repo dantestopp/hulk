@@ -6,6 +6,11 @@ namespace Hulk;
  */
 class Hulk{
 
+    // Don't allow object instantiation
+    private function __construct() {}
+    private function __destruct() {}
+    private function __clone() {}
+
     /**
     * Handles calls to static methods.
     *
