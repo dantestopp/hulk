@@ -11,6 +11,10 @@ class Hulk{
     private function __destruct(){}
     private function __clone(){}
 
+    private static $heart = null;
+
+    private static $initialized = false;
+
     /**
     * Handles calls to static methods.
     *
@@ -19,7 +23,11 @@ class Hulk{
     * @return mixed Callback results
     */
     public static function __callStatic($name, $params){
-
+        
+        if(self::$initialized == false){
+            self::$heart = new Core\Heart();
+            self::$initialized = true;
+        }
     }
 
 }
