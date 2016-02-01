@@ -6,4 +6,9 @@ PHP MVC Framework
 - [ ] Query Builder
 - [ ] Form from Model
 - [ ] Template Engine
+- [ ] Routing
 - [ ] ...
+
+##Contributors
+- happyoniens
+- gabriellovric

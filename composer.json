@@ -12,8 +12,18 @@
            "email": "lovric.gabriel@gmail.com"
         }
     ],
+<<<<<<< HEAD
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "5.1.*"
     }
+=======
+    "autoload": {
+           "psr-4": {
+                "Hulk\\": "src/",
+                "Hulk\\Core\\": "src/core/"
+            }
+    },
+    "require": {}
+>>>>>>> refs/remotes/origin/master
 }
