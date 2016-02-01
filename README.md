@@ -7,3 +7,7 @@ PHP MVC Framework
 - [ ] Form from Model
 - [ ] Template Engine
 - [ ] ...
+
+##Contributors
+- happyoniens
+- gabriellovric
