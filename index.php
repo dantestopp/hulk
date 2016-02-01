@@ -1,5 +1,4 @@
 <?php
+require_once __DIR__.'/vendor/autoload.php';
 
-require_once 'src/autoload.php';
-
-Hulk::smash();
+Hulk\Hulk::smash();

@@ -1,5 +1,5 @@
 <?php
-namespace Hulk\core;
+namespace Hulk\Core;
 
 /**
  * @author gabriellovric
@@ -19,7 +19,7 @@ class Loader {
      * @var array
      */
     protected $instances = array();
-    
+
     /**
      * Autoload directories.
      *
@@ -34,7 +34,7 @@ class Loader {
      * @return
      */
     public function register();
-    
+
     /**
      * Unregister a class
      *

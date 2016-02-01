@@ -12,5 +12,11 @@
            "email": "lovric.gabriel@gmail.com"
         }
     ],
+    "autoload": {
+           "psr-4": {
+                "Hulk\\": "src/",
+                "Hulk\\Core\\": "src/core/"
+            }
+    },
     "require": {}
 }
