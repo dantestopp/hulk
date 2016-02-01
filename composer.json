@@ -14,7 +14,8 @@
     ],
     "autoload": {
            "psr-4": {
-                "Hulk\\": "src/"
+                "Hulk\\": "src/",
+                "Hulk\\Core\\": "src/core/"
             }
     },
     "require": {}
