@@ -12,5 +12,8 @@
            "email": "lovric.gabriel@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "5.1.*"
+    }
 }
