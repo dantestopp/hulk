@@ -1,5 +1,5 @@
 <?php
-namespace Hulk\core;
+namespace Hulk\Core;
 
 /**
  * @author happyoniens
