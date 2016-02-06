@@ -25,6 +25,9 @@ class Heart{
     private function build(){
         //Set default framework vars
         $this->set('hulk.debug', false);
+        $this->set('hulk.view.path','');
+        $this->set('hulk.models.path','');
+        $this->set('hulk.controllers.path','');
     }
 
     public static function smash(){
