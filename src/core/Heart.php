@@ -14,6 +14,7 @@ class Heart{
 
     /**
      * Sets a variable to save in the framework
+     *
      * @param String $key   Key
      * @param Mixed $value value
      */
@@ -23,6 +24,7 @@ class Heart{
 
     /**
      * Gets a saved variable
+     *
      * @param  String $key Key
      * @return Mixed      Saved value
      */
@@ -32,6 +34,7 @@ class Heart{
 
     /**
      * Checks if a variable is exists
+     *
      * @param  String  $key Key
      * @return boolean
      */
@@ -41,6 +44,7 @@ class Heart{
 
     /**
      * Delete all or just a given variable
+     * 
      * @param  String $key Leave empty to delete all variables
      */
     public function delete($key = null){
