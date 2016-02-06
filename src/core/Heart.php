@@ -33,9 +33,21 @@ class Heart{
     /**
      * Checks if a variable is exists
      * @param  String  $key Key
-     * @return boolean      
+     * @return boolean
      */
     public function has($key){
         return isset($this->vars[$key]);
+    }
+
+    /**
+     * Delete all or just a given variable
+     * @param  String $key Leave empty to delete all variables
+     */
+    public function delete($key = null){
+        if($key === null){
+            $this->vars = [];
+        }else{
+            unset($this->vars[$key]);
+        }
     }
 }
