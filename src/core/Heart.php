@@ -16,7 +16,15 @@ class Heart{
      * Constructor
      */
     public function __construct(){
+        $this->build();
+    }
 
+    /**
+     * Build the framework
+     */
+    private function build(){
+        //Set default framework vars
+        $this->set('hulk.debug', false);
     }
 
     public static function smash(){
@@ -55,7 +63,7 @@ class Heart{
 
     /**
      * Delete all or just a given variable
-     * 
+     *
      * @param  String $key Leave empty to delete all variables
      */
     public function delete($key = null){
