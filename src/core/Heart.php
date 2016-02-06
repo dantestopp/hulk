@@ -12,6 +12,13 @@ class Heart{
      */
     private $vars = [];
 
+    /**
+     * Constructor
+     */
+    public function __construct(){
+
+    }
+
     public static function smash(){
 
     }
