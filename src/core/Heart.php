@@ -6,6 +6,10 @@ namespace Hulk\Core;
  */
 class Heart{
 
+    /**
+     * Stored variables
+     * @var Array
+     */
     private $vars = [];
 
     public static function smash(){
