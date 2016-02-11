@@ -6,7 +6,9 @@ namespace Hulk;
  */
 class Hulk{
 
-    // Don't allow object instantiation
+    /**
+     * Don't allow object instantiation
+     */
     private function __construct(){}
     private function __destruct(){}
     private function __clone(){}
