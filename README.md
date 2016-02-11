@@ -1,4 +1,7 @@
 # hulk
+
+[![Build Status](https://travis-ci.org/happyoniens/hulk.svg?branch=master)](https://travis-ci.org/happyoniens/hulk)
+
 PHP MVC Framework
 
 ##Features
