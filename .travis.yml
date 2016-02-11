@@ -15,3 +15,5 @@ matrix:
     - php: '7.0'
     - php: hhvm
     - php: nightly
+notifications:
+  slack: hulk-php:EqjiAncwk58CQeh9O50JEMQE
