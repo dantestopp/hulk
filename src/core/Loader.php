@@ -2,9 +2,14 @@
 namespace Hulk\Core;
 
 /**
- * @author gabriellovric
+ * @category Loader
+ * @package Hulk
+ * @author gabriellovric <lovric.gabriel@gmail.com>
+ * @license https://github.com/happyoniens/hulk/blob/master/LICENSE MIT
+ * @link https://github.com/happyoniens/hulk
  */
-class Loader {
+class Loader
+{
 
     /**
      * Registered classes.
@@ -30,40 +35,50 @@ class Loader {
     /**
      * Register a class
      *
-     * @param
-     * @return
+     * @return null
      */
-    public function register();
+    public function register()
+    {
+
+    }
 
     /**
      * Unregister a class
      *
-     * @param
-     * @return
+     * @return null
      */
-    public function unregister();
+    public function unregister()
+    {
+
+    }
 
     /**
      * Get instance of class if doesnt exist create new one
      *
-     * @param
-     * @return
+     * @return null
      */
-    public function getInstance();
+    public function getInstance()
+    {
+
+    }
 
     /**
      * Enables or disables autoloding
      *
-     * @param
-     * @return
+     * @return null
      */
-    public function autoload();
+    public function autoload()
+    {
+
+    }
 
     /**
      * Used by autoloader to load classes.
      *
-     * @param
-     * @return
+     * @return null
      */
-    public function load();
+    public function load()
+    {
+
+    }
 }
