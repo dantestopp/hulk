@@ -8,3 +8,5 @@ before_install:
     composer self-update
 install:
   - composer install --dev
+script:
+  - vendor/bin/phpunit tests/
