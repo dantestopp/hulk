@@ -12,5 +12,5 @@ script:
   - vendor/bin/phpunit tests/
 matrix:
   allow_failures:
-    - php: 7.0
+    - php: '7.0'
     - php: hhvm
