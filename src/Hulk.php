@@ -33,6 +33,10 @@ class Hulk
     {
     }
 
+    private static $heart = null;
+
+    private static $initialized = false;
+
     /**
     * Handles calls to static methods.
     *
@@ -43,5 +47,9 @@ class Hulk
     public static function __callStatic($name, $params)
     {
 
+        if (self::$initialized == false) {
+            self::$heart = new Core\Heart();
+            self::$initialized = true;
+        }
     }
 }
