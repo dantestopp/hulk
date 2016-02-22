@@ -53,6 +53,7 @@ class Heart
 
     /**
      * Start function
+     * 
      * @return null nothing
      */
     public static function smash()
