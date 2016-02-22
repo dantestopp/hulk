@@ -51,6 +51,6 @@ class Hulk
             self::$heart = new Core\Heart();
             self::$initialized = true;
         }
-        return self::$heart->captain->run([self::$heart, $name], $params);
+        return self::$heart->captain->run($name, $params);
     }
 }

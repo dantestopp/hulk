@@ -28,6 +28,8 @@ class Heart
      */
     public function __construct()
     {
+        $this->captain = new Captain();
+
         $this->build();
     }
 
@@ -46,14 +48,16 @@ class Heart
         $this->set('hulk.exceptions', true);
         $this->set('hulk.errors', true);
 
-        $this->captain = new Captain();
+        foreach (['smash', 'set', 'get', 'clear', 'has', 'delete'] as $key) {
+            $this->captain->set($key, [$this, $key]);
+        }
 
         $this->buildEHandlers();
     }
 
     /**
      * Start function
-     * 
+     *
      * @return null nothing
      */
     public static function smash()
