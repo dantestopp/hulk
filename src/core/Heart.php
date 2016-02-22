@@ -18,6 +18,12 @@ class Heart
     private $vars = [];
 
     /**
+     * Stores the captain
+     * @var Hulk\Core\Captain
+     */
+    public $captain = null;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -40,6 +46,8 @@ class Heart
         $this->set('hulk.exceptions', true);
         $this->set('hulk.errors', true);
 
+        $this->captain = new Captain();
+
         $this->buildEHandlers();
     }
 
@@ -49,7 +57,7 @@ class Heart
      */
     public static function smash()
     {
-
+        print "test";
     }
 
     /**
