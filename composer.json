@@ -22,5 +22,11 @@
                 "Hulk\\": "src/",
                 "Hulk\\Core\\": "src/core/"
             }
+    },
+    "scripts": {
+        "check": [
+            "vendor\\bin\\phpcs.bat src/ --standard=ruleset.xml -n",
+            "vendor\\bin\\phpunit.bat tests/"
+        ]
     }
 }
