@@ -57,7 +57,7 @@ class Heart
      */
     public static function smash()
     {
-        print "test";
+        print "<h1>It works!</h1>";
     }
 
     /**
