@@ -29,8 +29,18 @@ class Heart
     public function __construct()
     {
         $this->captain = new Captain();
+        $this->loader = new Loader();
 
         $this->build();
+    }
+
+    public function __call($name, $params)
+    {
+        if (is_callable($this->captain->get($name))) {
+            return $this->$captain->run($name, $params);
+        } else {
+            return $this->loader->run($name);
+        }
     }
 
     /**
@@ -48,7 +58,7 @@ class Heart
         $this->set('hulk.exceptions', true);
         $this->set('hulk.errors', true);
 
-        foreach (['smash', 'set', 'get', 'clear', 'has', 'delete'] as $key) {
+        foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
             $this->captain->set($key, [$this, $key]);
         }
 
@@ -65,6 +75,13 @@ class Heart
         print "test";
     }
 
+    public function path($path){
+        $this->loader->addDirectory($path);
+    }
+
+    public function register($name, $class, $params = []){
+        $this->loader->register($name, $class, $params);
+    }
     /**
      * Sets a variable to save in the framework
      *
