@@ -21,7 +21,8 @@
            "psr-4": {
                 "Hulk\\": "src/",
                 "Hulk\\Core\\": "src/core/"
-            }
+            },
+            "files": ["src/autoloader.php"]
     },
     "scripts": {
         "check": [
