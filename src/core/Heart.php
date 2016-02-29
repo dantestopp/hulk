@@ -34,6 +34,14 @@ class Heart
         $this->build();
     }
 
+    /**
+     * Handles functions calls
+     *
+     * @param  String $name   Name of function or class
+     * @param  Array  $params Params
+     *
+     * @return Mixed          Return of functions
+     */
     public function __call($name, $params)
     {
         if (is_callable($this->captain->get($name))) {
@@ -75,13 +83,30 @@ class Heart
         print "test";
     }
 
-    public function path($path){
+    /**
+     * Add path to autoloader
+     * @param  String $path Path to Directory
+     *
+     * @return null         nothing
+     */
+    public function path($path)
+    {
         $this->loader->addDirectory($path);
     }
 
-    public function register($name, $class, $params = []){
+    /**
+     * Register class
+     * @param  String $name   Name to run class
+     * @param  String $class  Name of class
+     * @param  Array  $params Params for instantiation
+     *
+     * @return null           nothing
+     */
+    public function register($name, $class, $params = [])
+    {
         $this->loader->register($name, $class, $params);
     }
+
     /**
      * Sets a variable to save in the framework
      *
