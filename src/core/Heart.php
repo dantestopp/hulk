@@ -28,7 +28,27 @@ class Heart
      */
     public function __construct()
     {
+        $this->captain = new Captain();
+        $this->loader = new Loader();
+
         $this->build();
+    }
+
+    /**
+     * Handles functions calls
+     *
+     * @param  String $name   Name of function or class
+     * @param  Array  $params Params
+     *
+     * @return Mixed          Return of functions
+     */
+    public function __call($name, $params)
+    {
+        if (is_callable($this->captain->get($name))) {
+            return $this->$captain->run($name, $params);
+        } else {
+            return $this->loader->run($name);
+        }
     }
 
     /**
@@ -46,18 +66,45 @@ class Heart
         $this->set('hulk.exceptions', true);
         $this->set('hulk.errors', true);
 
-        $this->captain = new Captain();
+        foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
+            $this->captain->set($key, [$this, $key]);
+        }
 
         $this->buildEHandlers();
     }
 
     /**
      * Start function
+     *
      * @return null nothing
      */
     public static function smash()
     {
         print "<h1>It works!</h1>";
+    }
+
+    /**
+     * Add path to autoloader
+     * @param  String $path Path to Directory
+     *
+     * @return null         nothing
+     */
+    public function path($path)
+    {
+        $this->loader->addDirectory($path);
+    }
+
+    /**
+     * Register class
+     * @param  String $name   Name to run class
+     * @param  String $class  Name of class
+     * @param  Array  $params Params for instantiation
+     *
+     * @return null           nothing
+     */
+    public function register($name, $class, $params = [])
+    {
+        $this->loader->register($name, $class, $params);
     }
 
     /**

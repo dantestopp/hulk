@@ -21,10 +21,12 @@
            "psr-4": {
                 "Hulk\\": "src/",
                 "Hulk\\Core\\": "src/core/"
-            }
+            },
+            "files": ["src/autoloader.php"]
     },
     "scripts": {
         "check": [
+            "vendor\\bin\\phpcbf.bat src/ --standard=ruleset.xml",
             "vendor\\bin\\phpcs.bat src/ --standard=ruleset.xml -n",
             "vendor\\bin\\phpunit.bat tests/"
         ]
