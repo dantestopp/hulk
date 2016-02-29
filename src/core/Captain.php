@@ -48,7 +48,7 @@ class Captain
         if (isset($this->calls[$name])) {
             return $this->calls[$name];
         } else {
-            throw new HulkException("Function {$name} not found.");
+            return null;
         };
     }
 
@@ -60,7 +60,7 @@ class Captain
      * @return Mixed         Result of function
      * @throws Hulk\Core\HulkException
      */
-    private function invoke($name, $params)
+    public function invoke($name, $params)
     {
         if (is_callable($name)) {
             return call_user_func_array($name, $params);
