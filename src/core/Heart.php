@@ -168,24 +168,13 @@ class Heart
     private function buildEHandlers()
     {
         if ($this->get('hulk.exceptions') == true) {
-                    set_exception_handler([$this, 'exceptionHandler']);
+            $whoops = new \Whoops\Run;
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->register();
         }
         if ($this->get('hulk.errors') == true) {
                     set_error_handler([$this, 'errorHandler']);
         }
-    }
-
-    /**
-     * Handles exceptions
-     *
-     * @param Exception $e Thrown exception
-     *
-     * @return null nothing
-     * @todo   logging?
-     */
-    public function exceptionHandler(\Exception $e)
-    {
-        $this->error($e);
     }
 
     /**
@@ -203,29 +192,5 @@ class Heart
         if ($errno & error_reporting()) {
             throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
-    }
-
-    /**
-     * Prints exceptions in a formated way
-     *
-     * @param Exception $e a thrown description
-     *
-     * @return null nothing
-     * @todo   styling
-     */
-    private function error(\Exception $e)
-    {
-        $msg = sprintf(
-            '<h1>Error:</h1>
-            <h3>%s (%s) in file %s (Line %s)</h3>
-            <pre>%s</pre>',
-            $e->getMessage(),
-            $e->getCode(),
-            $e->getFile(),
-            $e->getLine(),
-            $e->getTraceAsString()
-        );
-
-        die($msg);
     }
 }
