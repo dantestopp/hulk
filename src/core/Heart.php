@@ -59,14 +59,14 @@ class Heart
     private function build()
     {
         //Set default framework vars		
-		$this->setArray([
-			'hulk.debug' => false,
-			'hulk.view.path' => '',
-			'hulk.models.path' => '',
-			'hulk.controllers.path' => '',
-			'hulk.exceptions' => true,
-			'hulk.errors' => true,
-		]);		
+        $this->setArray([  
+            'hulk.debug' => false,
+            'hulk.view.path' => '',
+            'hulk.models.path' => '',
+            'hulk.controllers.path' => '',
+            'hulk.exceptions' => true,
+            'hulk.errors' => true,
+        ]);		
 
         foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
             $this->captain->set($key, [$this, $key]);
@@ -118,9 +118,9 @@ class Heart
      */
     public function setArray($array)
     {
-		foreach($array as $key => $value) {
-			$this->set($key, $value);
-		}
+        foreach($array as $key => $value) {
+            $this->set($key, $value);
+        }
     }
 
     /**
