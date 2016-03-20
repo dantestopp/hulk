@@ -58,13 +58,15 @@ class Heart
      */
     private function build()
     {
-        //Set default framework vars
-        $this->set('hulk.debug', false);
-        $this->set('hulk.view.path', '');
-        $this->set('hulk.models.path', '');
-        $this->set('hulk.controllers.path', '');
-        $this->set('hulk.exceptions', true);
-        $this->set('hulk.errors', true);
+        //Set default framework vars		
+		$this->setArray([
+			'hulk.debug' => false,
+			'hulk.view.path' => '',
+			'hulk.models.path' => '',
+			'hulk.controllers.path' => '',
+			'hulk.exceptions' => true,
+			'hulk.errors' => true,
+		]);		
 
         foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
             $this->captain->set($key, [$this, $key]);
@@ -105,6 +107,20 @@ class Heart
     public function register($name, $class, $params = [])
     {
         $this->loader->register($name, $class, $params);
+    }
+
+    /**
+     * Sets multiple variables to save in the framework
+     *
+     * @param Array $array the array with the variables
+     *
+     * @return null nothing
+     */
+    public function setArray($array)
+    {
+		foreach($array as $key => $value) {
+			$this->set($key, $value);
+		}
     }
 
     /**
