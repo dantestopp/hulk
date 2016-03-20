@@ -28,7 +28,7 @@
     },
     "scripts": {
         "check": [
-            "vendor\\bin\\phpcbf.bat src/ --standard=ruleset.xml",
+            "vendor\\bin\\phpcbf.bat src/ --standard=ruleset.xml --no-patch",
             "vendor\\bin\\phpcs.bat src/ --standard=ruleset.xml -n",
             "vendor\\bin\\phpunit.bat tests/"
         ]
