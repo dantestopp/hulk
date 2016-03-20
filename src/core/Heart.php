@@ -66,7 +66,7 @@ class Heart
             'hulk.controllers.path' => '',
             'hulk.exceptions' => true,
             'hulk.errors' => true]
-        );		
+        );        
 
         foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
             $this->captain->set($key, [$this, $key]);
