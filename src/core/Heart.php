@@ -16,6 +16,12 @@ class Heart
      * @var Array
      */
     private $vars = [];
+    
+    /**
+     * Stores the configuratione Loader
+     * @var Hulk\Core\ConfigurationLoader
+     */
+    private $configurationLoader = null;
 
     /**
      * Stores the captain
@@ -30,6 +36,7 @@ class Heart
     {
         $this->captain = new Captain();
         $this->loader = new Loader();
+        $this->configurationLoader = new ConfigurationLoader();
 
         $this->build();
     }
@@ -57,16 +64,8 @@ class Heart
      * @return null nothing
      */
     private function build()
-    {
-        //Set default framework vars		
-        $this->setArray(
-            ['hulk.debug' => false,
-            'hulk.view.path' => '',
-            'hulk.models.path' => '',
-            'hulk.controllers.path' => '',
-            'hulk.exceptions' => true,
-            'hulk.errors' => true]
-        );        
+    {      
+        $this->loadConfigurationFile();
         
         //set default static methods
         foreach (['smash', 'set', 'setArray', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
@@ -76,6 +75,20 @@ class Heart
         $this->buildEHandlers();
     }
 
+    /**
+     * Load the configuration file. Create a new one if none exists, with default variables
+     *
+     * @return null nothing
+     */
+    private function loadConfigurationFile()
+    {
+        $configFile = $this->configurationLoader->loadConfiguration(
+            'hulk.ini',
+            ['hulk.debug' => false, 'hulk.exceptions' => true, 'hulk.errors' => true]
+        );
+        $this->setArray($configFile); 
+    }
+    
     /**
      * Start function
      *
