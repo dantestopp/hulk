@@ -22,27 +22,19 @@ class ConfigurationLoader
     {   
         $ini = null;
         //load ini file
-        if(file_exists($path))
-        {        
+        if (file_exists($path)) {        
             $ini = $ini = parse_ini_file($path); 
-        }
-        else
-        {
+        } else {
             $ini = false;
         }
         
         //if ini file is empty or does not exist
-        if(!$ini)
-        {
+        if(!$ini) {
             $this->createConfiguration($path, $defaultValues);
             $ini = $defaultValues;
-        }
-        else
-        {
-            foreach ($defaultValues as $key => $value) 
-            {
-                if(!array_key_exists($key, $ini))
-                {
+        } else {
+            foreach ($defaultValues as $key => $value) {
+                if (!array_key_exists($key, $ini)) {
                     $ini[$key] = $value;
                 }
             }
@@ -62,16 +54,13 @@ class ConfigurationLoader
     {
         $file = fopen($path, 'w');
         
-        if(!$file)
-        {
+        if (!$file) {
             die("File $path could not be opened");
         }
         
-        foreach ($values as $key => $value) 
-        {
+        foreach ($values as $key => $value) {
             $success = fwrite($file, $key.' = '.$value."\r\n");    
-            if(!$success)
-            {
+            if(!$success) {
                 die("$path could not be written");
             }
         }
