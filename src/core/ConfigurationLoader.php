@@ -29,7 +29,7 @@ class ConfigurationLoader
         }
         
         //if ini file is empty or does not exist
-        if(!$ini) {
+        if (!$ini) {
             $this->createConfiguration($path, $defaultValues);
             $ini = $defaultValues;
         } else {
@@ -60,7 +60,7 @@ class ConfigurationLoader
         
         foreach ($values as $key => $value) {
             $success = fwrite($file, $key.' = '.$value."\r\n");    
-            if(!$success) {
+            if (!$success) {
                 die("$path could not be written");
             }
         }
