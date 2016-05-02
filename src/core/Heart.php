@@ -67,8 +67,9 @@ class Heart
             'hulk.exceptions' => true,
             'hulk.errors' => true]
         );        
-
-        foreach (['smash', 'set', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
+        
+        //set default static methods
+        foreach (['smash', 'set', 'setArray', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
             $this->captain->set($key, [$this, $key]);
         }
 
