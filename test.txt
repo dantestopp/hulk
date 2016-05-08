@@ -1,0 +1,3 @@
+hulk.debug = 
+hulk.exceptions = 1
+hulk.errors = 1

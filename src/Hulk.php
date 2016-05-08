@@ -44,12 +44,13 @@ class Hulk
     * @param array  $params Method parameters
     * @return mixed Callback results
     */
-    public static function __callStatic($name, $params)
+    public static function __callStatic($name, $params = [])
     {
 
         if (self::$initialized == false) {
             self::$heart = new Core\Heart();
             self::$initialized = true;
         }
+        return self::$heart->captain->invoke([self::$heart, $name], $params);
     }
 }

@@ -16,13 +16,46 @@ class Heart
      * @var Array
      */
     private $vars = [];
+    
+    /**
+     * Stores the configuratione Loader
+     * @var Hulk\Core\ConfigurationLoader
+     */
+    private $configurationLoader = null;
+
+    /**
+     * Stores the captain
+     * @var Hulk\Core\Captain
+     */
+    public $captain = null;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->captain = new Captain();
+        $this->loader = new Loader();
+        $this->configurationLoader = new ConfigurationLoader();
+
         $this->build();
+    }
+
+    /**
+     * Handles functions calls
+     *
+     * @param  String $name   Name of function or class
+     * @param  Array  $params Params
+     *
+     * @return Mixed          Return of functions
+     */
+    public function __call($name, $params)
+    {
+        if (is_callable($this->captain->get($name))) {
+            return $this->$captain->run($name, $params);
+        } else {
+            return $this->loader->run($name);
+        }
     }
 
     /**
@@ -31,25 +64,77 @@ class Heart
      * @return null nothing
      */
     private function build()
-    {
-        //Set default framework vars
-        $this->set('hulk.debug', false);
-        $this->set('hulk.view.path', '');
-        $this->set('hulk.models.path', '');
-        $this->set('hulk.controllers.path', '');
-        $this->set('hulk.exceptions', true);
-        $this->set('hulk.errors', true);
+    {      
+        $this->loadConfigurationFile();
+        
+        //set default static methods
+        foreach (['smash', 'set', 'setArray', 'get', 'clear', 'has', 'delete', 'register', 'path'] as $key) {
+            $this->captain->set($key, [$this, $key]);
+        }
 
         $this->buildEHandlers();
     }
 
     /**
+     * Load the configuration file. Create a new one if none exists, with default variables
+     *
+     * @return null nothing
+     */
+    private function loadConfigurationFile()
+    {
+        $configFile = $this->configurationLoader->loadConfiguration(
+            'hulk.ini',
+            ['hulk.debug' => false, 'hulk.exceptions' => true, 'hulk.errors' => true]
+        );
+        $this->setArray($configFile); 
+    }
+    
+    /**
      * Start function
+     *
      * @return null nothing
      */
     public static function smash()
     {
+        print "<h1>It works!</h1>";
+    }
 
+    /**
+     * Add path to autoloader
+     * @param  String $path Path to Directory
+     *
+     * @return null         nothing
+     */
+    public function path($path)
+    {
+        $this->loader->addDirectory($path);
+    }
+
+    /**
+     * Register class
+     * @param  String $name   Name to run class
+     * @param  String $class  Name of class
+     * @param  Array  $params Params for instantiation
+     *
+     * @return null           nothing
+     */
+    public function register($name, $class, $params = [])
+    {
+        $this->loader->register($name, $class, $params);
+    }
+
+    /**
+     * Sets multiple variables to save in the framework
+     *
+     * @param Array $array the array with the variables
+     *
+     * @return null nothing
+     */
+    public function setArray($array)
+    {
+        foreach ($array as $key => $value) {
+            $this->set($key, $value);
+        }
     }
 
     /**
@@ -113,24 +198,13 @@ class Heart
     private function buildEHandlers()
     {
         if ($this->get('hulk.exceptions') == true) {
-                    set_exception_handler([$this, 'exceptionHandler']);
+            $whoops = new \Whoops\Run;
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->register();
         }
         if ($this->get('hulk.errors') == true) {
                     set_error_handler([$this, 'errorHandler']);
         }
-    }
-
-    /**
-     * Handles exceptions
-     *
-     * @param Exception $e Thrown exception
-     *
-     * @return null nothing
-     * @todo   logging?
-     */
-    public function exceptionHandler(\Exception $e)
-    {
-        $this->error($e);
     }
 
     /**
@@ -148,29 +222,5 @@ class Heart
         if ($errno & error_reporting()) {
             throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
-    }
-
-    /**
-     * Prints exceptions in a formated way
-     *
-     * @param Exception $e a thrown description
-     *
-     * @return null nothing
-     * @todo   styling
-     */
-    private function error(\Exception $e)
-    {
-        $msg = sprintf(
-            '<h1>Error:</h1>
-            <h3>%s (%s) in file %s (Line %s)</h3>
-            <pre>%s</pre>',
-            $e->getMessage(),
-            $e->getCode(),
-            $e->getFile(),
-            $e->getLine(),
-            $e->getTraceAsString()
-        );
-
-        die($msg);
     }
 }
